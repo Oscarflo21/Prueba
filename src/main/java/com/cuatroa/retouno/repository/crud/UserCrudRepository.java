@@ -11,7 +11,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Oscar Florez Forero
  */
 public interface UserCrudRepository extends MongoRepository<User,Integer> {
-    
+
+/**public List<User> findByMonthBirthtDay(String monthBirthtDay);    
 /**
  * 
  * @param name

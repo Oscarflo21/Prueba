@@ -56,33 +56,33 @@ public class VegetarianServices {
      */
     public Vegetarian update(Vegetarian vegetarian) {
         if (vegetarian.getReference()!= null) {
-            Optional<Vegetarian> vegetarianExist = repository.getVegetarianByReference(vegetarian.getReference());
-		if (vegetarianExist.isPresent()) {
-                    if (vegetarian.getBrand() != null) {
-                        vegetarianExist.get().setBrand(vegetarian.getBrand());
-                    }
-                    if (vegetarian.getCategory() != null) {
-                        vegetarianExist.get().setCategory(vegetarian.getCategory());
-                    }
-                    if (vegetarian.getDescription() != null) {
-                        vegetarianExist.get().setDescription(vegetarian.getDescription());
-                    }
-                    if (vegetarian.getPrice() != 0.0) {
-                        vegetarianExist.get().setPrice(vegetarian.getPrice());
-                    }
-                    if (vegetarian.getQuantity() != 0) {
-                        vegetarianExist.get().setQuantity(vegetarian.getQuantity());
-                    }
-                    if (vegetarian.getPhotography() != null) {
-                        vegetarianExist.get().setPhotography(vegetarian.getPhotography());
-                    }
-                    return repository.save(vegetarianExist.get());
-		} else {
-                    return vegetarian;
-		}
+            Optional<Vegetarian> vegetarianExist = repository.getVegetarian(vegetarian.getReference());
+            if (vegetarianExist.isPresent()) {
+                if (vegetarian.getBrand() != null) {
+                    vegetarianExist.get().setBrand(vegetarian.getBrand());
+                }
+                if (vegetarian.getCategory() != null) {
+                    vegetarianExist.get().setCategory(vegetarian.getCategory());
+                }
+                if (vegetarian.getDescription() != null) {
+                    vegetarianExist.get().setDescription(vegetarian.getDescription());
+                }
+                if (vegetarian.getPrice() != 0.0) {
+                    vegetarianExist.get().setPrice(vegetarian.getPrice());
+                }
+                if (vegetarian.getQuantity() != 0) {
+                    vegetarianExist.get().setQuantity(vegetarian.getQuantity());
+                }
+                if (vegetarian.getPhotography() != null) {
+                    vegetarianExist.get().setPhotography(vegetarian.getPhotography());
+                }
+                return repository.save(vegetarianExist.get());
             } else {
-		return vegetarian;
+                return vegetarian;
             }
+        } else {
+            return vegetarian;
+        }
     }
     
     /**
@@ -90,7 +90,7 @@ public class VegetarianServices {
      * @param reference
      * @return 
      */
-    public boolean deleteByReference(String reference) {
+    public boolean deleteReference(String reference) {
 		Boolean vBoolean = repository.getVegetarianByReference(reference).map(vegetarian -> {
 			repository.deleteByReference(reference);
 			return true;

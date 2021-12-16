@@ -74,19 +74,20 @@ public class UserServices {
     public User update(User user){
         if(user.getId()!=null){
             Optional<User> userExist = repository.getUserById(user.getId());
-            if(userExist.isPresent()){
+            if(!userExist.isEmpty()){
                 if(user.getIdentification()!=null){
                     userExist.get().setIdentification(user.getIdentification());
                 }
                 if(user.getName()!=null){
                     userExist.get().setName(user.getName());
                 }
-                if(user.getBirthtDay()!=null){
+                /**if(user.getBirthtDay()!=null){
                     userExist.get().setBirthtDay(user.getBirthtDay());
                 }
                 if(user.getMonthBirthtDay()!=null){
                     userExist.get().setMonthBirthtDay(user.getMonthBirthtDay());
                 }
+                */
                 if(user.getAddress()!=null){
                     userExist.get().setAddress(user.getAddress());
                 }
@@ -126,4 +127,9 @@ public class UserServices {
         }).orElse(false);
             return aBoolean;
     }
+    /**
+    public List<User> birthtDayList(String monthBirthtDay) {
+        return repository.birthtDayList(monthBirthtDay);
+    }
+    */
  } 

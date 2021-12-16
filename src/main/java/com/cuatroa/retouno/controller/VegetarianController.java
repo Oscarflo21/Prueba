@@ -64,7 +64,7 @@ public class VegetarianController {
     @DeleteMapping("/{reference}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("reference") String reference){
-        return service.deleteByReference(reference);
+        return service.deleteReference(reference);
     }
     
 }
